@@ -11,10 +11,9 @@
  *   pwsh-close-session name="work" → cleanup
  */
 
-import type { ExtensionAPI, ExtensionContext, AgentToolResult, ToolRenderResultOptions } from "@mariozechner/pi-coding-agent";
-import { Theme } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
-import { Type } from "@sinclair/typebox";
+import type { ExtensionAPI, ExtensionContext, AgentToolResult, ToolRenderResultOptions, Theme } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
+import { Type } from "typebox";
 import { sessionManager } from "../session/session-manager.js";
 
 interface SessionDetails { name: string; success: boolean; error?: string; [key: string]: unknown; }

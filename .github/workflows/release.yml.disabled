@@ -24,7 +24,7 @@ jobs:
           node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
-      - run: npm install
+      - run: npm ci
 
       - name: Create Release PR or Publish
         id: changesets

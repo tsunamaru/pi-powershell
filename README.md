@@ -1,8 +1,8 @@
-# @marcfargas/pi-powershell
+# @tsunamaru/pi-powershell
 
-[![npm](https://img.shields.io/npm/v/@marcfargas/pi-powershell)](https://www.npmjs.com/package/@marcfargas/pi-powershell)
+[![npm](https://img.shields.io/npm/v/@tsunamaru/pi-powershell)](https://www.npmjs.com/package/@tsunamaru/pi-powershell)
 
-PowerShell tools for [pi](https://github.com/mariozechner/pi-coding-agent) agents on Windows — background processes, system operations, and remote management.
+PowerShell tools for [pi](https://github.com/earendil-works/pi) agents on Windows — background processes, system operations, and remote management.
 
 ## Problem
 
@@ -26,7 +26,7 @@ A pi package bundling an **extension** (8 tools) and a **skill** (teaches agents
 ## Installation
 
 ```bash
-pi install npm:@marcfargas/pi-powershell
+pi install npm:@tsunamaru/pi-powershell
 ```
 
 The package registers both the extension (tools) and skill (agent documentation).
@@ -97,12 +97,14 @@ await tools['pwsh-close-session']({ name: 'prod' });
 
 ## Development
 
-Part of [pi-mf-extensions](https://github.com/marcfargas/pi-mf-extensions).
-
 ```bash
+npm ci          # install only; audit is kept off this latency-sensitive path
+npm audit --audit=true --fetch-timeout=30000 --fetch-retries=0
 npm test        # 50 tests
 npm run typecheck
 ```
+
+Dependency auditing runs as a separate CI job so registry audit latency cannot stall every install.
 
 ## License
 

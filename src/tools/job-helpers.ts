@@ -9,10 +9,9 @@
  * (all PowerShell streams to one file — see about_Redirection).
  */
 
-import type { ExtensionAPI, ExtensionContext, AgentToolResult, ToolRenderResultOptions } from "@mariozechner/pi-coding-agent";
-import { Theme } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
-import { Type } from "@sinclair/typebox";
+import type { ExtensionAPI, ExtensionContext, AgentToolResult, ToolRenderResultOptions, Theme } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
+import { Type } from "typebox";
 import { tmpdir } from "os";
 import { join } from "path";
 import { randomBytes } from "crypto";

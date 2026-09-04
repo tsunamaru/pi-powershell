@@ -2,10 +2,9 @@
  * PowerShell tool for Windows system integration and background processes.
  */
 
-import type { ExtensionAPI, ExtensionContext, AgentToolResult, AgentToolUpdateCallback, ToolRenderResultOptions } from "@mariozechner/pi-coding-agent";
-import { Theme } from "@mariozechner/pi-coding-agent";
-import { Text } from "@mariozechner/pi-tui";
-import { Type } from "@sinclair/typebox";
+import type { ExtensionAPI, ExtensionContext, AgentToolResult, AgentToolUpdateCallback, ToolRenderResultOptions, Theme } from "@earendil-works/pi-coding-agent";
+import { Text } from "@earendil-works/pi-tui";
+import { Type } from "typebox";
 import { spawn } from "child_process";
 import { sessionManager } from "../session/session-manager.js";
 

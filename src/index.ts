@@ -4,7 +4,7 @@
  * Extension entry point. Registers PowerShell tools, job management helpers, and session management.
  */
 
-import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
+import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { registerPowerShellTool } from "./tools/powershell.js";
 import { registerJobHelpers } from "./tools/job-helpers.js";
 import { registerPSessionTools } from "./tools/psession-tools.js";
