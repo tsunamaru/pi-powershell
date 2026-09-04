@@ -106,15 +106,23 @@ describe("PowerShell Job Helpers", () => {
 				return;
 			}
 
-			// Start a long-running job, wait for it to start, then stop it
+			// Start a long-running job and wait until the child process has actually
+			// started before stopping it. On slower CI runners, stopping a NotStarted
+			// job can race initialization and transition it to Failed instead.
 			const result = await executePowerShell({
 				command: `
 					$job = Start-Job -Name 'test-stop-job' -ScriptBlock {
 						Start-Sleep -Seconds 10
 					}
-					Start-Sleep -Milliseconds 300
-					Stop-Job -Name 'test-stop-job' -ErrorAction SilentlyContinue
-					Get-Job -Name 'test-stop-job' -ErrorAction SilentlyContinue | Select-Object Name, State | ConvertTo-Json
+					$deadline = [DateTime]::UtcNow.AddSeconds(5)
+					while ($job.State -eq 'NotStarted' -and [DateTime]::UtcNow -lt $deadline) {
+						Start-Sleep -Milliseconds 100
+						$job = Get-Job -Name 'test-stop-job'
+					}
+					if ($job.State -eq 'Running') {
+						Stop-Job -Job $job
+					}
+					$job | Select-Object Name, State | ConvertTo-Json
 				`
 			});
 

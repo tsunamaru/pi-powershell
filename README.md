@@ -99,12 +99,18 @@ await tools['pwsh-close-session']({ name: 'prod' });
 
 ```bash
 npm ci          # install only; audit is kept off this latency-sensitive path
-npm audit --audit=true --fetch-timeout=30000 --fetch-retries=0
 npm test        # 50 tests
 npm run typecheck
+npm run lint
 ```
 
-Dependency auditing runs as a separate CI job so registry audit latency cannot stall every install.
+Dependency auditing uses [OSV-Scanner](https://google.github.io/osv-scanner/) instead of npm's intermittently unavailable audit endpoint. Install it once on Windows with `winget install Google.OSVScanner`, then run:
+
+```bash
+npm run audit
+```
+
+CI runs the same lockfile scan as a separate job so vulnerability-service latency cannot stall every install.
 
 ## License
 
